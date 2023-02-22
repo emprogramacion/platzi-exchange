@@ -56,9 +56,6 @@
           {{ a.changePercent24Hr | percent }}
         </td>
         <td class="hidden sm:block">
-          <!-- Añadimos el componente pxButton y enlazamos el handle goToCoin con este componente 
-          Enviamos código HTML al slot del componente hijo (PxButton): Enviamos <span> Detalle </span> 
-          -->
           <px-button @custom-click="goToCoin(a.id)">
             <span>Detalle</span>
           </px-button>
@@ -69,11 +66,11 @@
 </template>
 
 <script>
-import PxButton from "@/components/PxButton.vue"; //Importamos el componente PxButton
+import PxButton from "@/components/PxButton.vue";
 export default {
   name: "PxAssetsTable",
 
-  components: { PxButton }, //Registramos PxButton para que este componente lo pueda usar.
+  components: { PxButton },
 
   props: {
     assets: {
@@ -83,10 +80,7 @@ export default {
   },
 
   methods: {
-    //Método (handle) que recibe el id de la moneda (coin)
     goToCoin(id) {
-      /*Usamos el objeto $router y pusheamos (empujamos) con push, una nueva ruta dentro del stack de rutas del router, usando la misma
-      sintaxis que usamos cuando trabajamos con el <router-link>: { name: 'coin-detail', params: { id: a.id } } --> Esto va dentro de push() */
       this.$router.push({ name: "coin-detail", params: { id } });
     },
   },
