@@ -27,7 +27,7 @@ function getAssetHistory(coin) {
 
 /* Este método getMarkets recibe la moneda en cuestión */
 function getMarkets(coin) {
-  //Este método de coincap nos permite obtener las listas de mercado para una moneda en particular a través de un fetch
+  //Este método de coincap nos permite obtener las listas de mercado (máximo 5) para una moneda en particular a través de un fetch
   return fetch(`${url}/assets/${coin}/markets?limit=5`)
     .then((res) => res.json())
     .then((res) => res.data);
