@@ -86,6 +86,7 @@ export default {
     return {
       asset: {},
       history: [],
+      markets: [],
       isLoading: false,
     };
   },
@@ -120,14 +121,17 @@ export default {
       const id = this.$route.params.id;
       this.isLoading = true;
 
-      Promise.all([api.getAsset(id), api.getAssetHistory(id)])
-        .then(([asset, history]) => {
+      Promise.all([
+        api.getAsset(id),
+        api.getAssetHistory(id),
+        api.getMarkets(id),
+      ])
+        .then(([asset, history, markets]) => {
           this.asset = asset;
           this.history = history;
+          this.markets = markets;
         })
         .finally(() => (this.isLoading = false));
-      /*La ventaja de usar el finally() es que por más que haya un error o un catch() dentro de la promesa, el 
-      finally se va a ejecutar de todos modos y en caso de error o no error siempre se va a apagar el loader */
     },
   },
 };
